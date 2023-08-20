@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpicw6bml8emt"]
+
+[ext_resource type="Script" path="res://Weapons/staff.gd" id="1_xftwi"]
+[ext_resource type="PackedScene" uid="uid://bp6c6yqehastm" path="res://UI/reload_bar.tscn" id="2_iqieu"]
+
+[node name="Staff" type="Sprite2D"]
+rotation = 4.71239
+script = ExtResource("1_xftwi")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ReloadBar" parent="." instance=ExtResource("2_iqieu")]
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

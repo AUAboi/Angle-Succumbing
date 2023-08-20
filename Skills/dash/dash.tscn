@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvwmudcsm4uc2"]
+
+[ext_resource type="Script" path="res://Skills/dash/dash.gd" id="1_uvvw6"]
+[ext_resource type="PackedScene" uid="uid://del6ogyle0ixf" path="res://Overlap/cooldown.tscn" id="2_152s8"]
+
+[node name="Dash" type="Node"]
+script = ExtResource("1_uvvw6")
+
+[node name="Cooldown" parent="." instance=ExtResource("2_152s8")]

@@ -1,0 +1,146 @@
+[gd_scene load_steps=21 format=3 uid="uid://7jdxn1tq7whk"]
+
+[ext_resource type="Script" path="res://Enemies/base_enemy.gd" id="1_gt4aa"]
+[ext_resource type="Texture2D" uid="uid://d1n5y88vvnm8p" path="res://Shadows/MediumShadow.png" id="3_1intn"]
+[ext_resource type="Texture2D" uid="uid://s2r7atwdkr0b" path="res://Enemies/VenomousChimeraIdle.png" id="3_4afdq"]
+[ext_resource type="PackedScene" uid="uid://cjk2j1x8svijx" path="res://Overlap/hurtbox.tscn" id="4_cngeo"]
+[ext_resource type="PackedScene" uid="uid://onkp6yacs7v4" path="res://stats.tscn" id="5_bdwx8"]
+[ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="6_p6l75"]
+[ext_resource type="PackedScene" path="res://Overlap/soft_collision.tscn" id="7_u2ktj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n5rf"]
+atlas = ExtResource("3_4afdq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxudp"]
+atlas = ExtResource("3_4afdq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puqy4"]
+atlas = ExtResource("3_4afdq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvk58"]
+atlas = ExtResource("3_4afdq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blykc"]
+atlas = ExtResource("3_4afdq")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mry7o"]
+atlas = ExtResource("3_4afdq")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5y628"]
+atlas = ExtResource("3_4afdq")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7hq4"]
+atlas = ExtResource("3_4afdq")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xdigk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1n5rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxudp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puqy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvk58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blykc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mry7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5y628")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7hq4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1c87o"]
+radius = 4.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ymcya"]
+radius = 11.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gjs3k"]
+radius = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3lkm"]
+radius = 13.0
+
+[node name="Chimera" type="CharacterBody2D"]
+position = Vector2(0, -14)
+collision_layer = 0
+script = ExtResource("1_gt4aa")
+speed = 120.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xdigk")
+frame = 5
+frame_progress = 0.902589
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 12)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1c87o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 14)
+texture = ExtResource("3_1intn")
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_cngeo")]
+visible = false
+position = Vector2(0, -2)
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ymcya")
+debug_color = Color(0.913725, 0, 0.721569, 0.419608)
+
+[node name="Stats" parent="." instance=ExtResource("5_bdwx8")]
+max_health = 3
+
+[node name="Hitbox" parent="." instance=ExtResource("6_p6l75")]
+visible = false
+collision_layer = 64
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gjs3k")
+
+[node name="SoftCollision" parent="." instance=ExtResource("7_u2ktj")]
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+position = Vector2(0, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_e3lkm")
+debug_color = Color(0, 0.631373, 0.466667, 0.419608)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
+[editable path="SoftCollision"]

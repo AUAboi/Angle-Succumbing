@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://d1p7voi8hu0h0"]
+
+[ext_resource type="Texture2D" uid="uid://n0hg4np3jl8j" path="res://Weapons/pngwing.com.png" id="1_erhff"]
+[ext_resource type="Script" path="res://Weapons/fireball.gd" id="1_u3fpi"]
+[ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="3_mc6wl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h4ycf"]
+radius = 21.0
+height = 86.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oekfo"]
+radius = 20.0
+height = 46.0
+
+[sub_resource type="Animation" id="Animation_3moba"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ucs7p"]
+resource_name = "fire"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [3, 4, 5, 6, 7, 8, 7, 8, 9, 10, 11, 12, 46, 47, 48]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rx4cs"]
+_data = {
+"RESET": SubResource("Animation_3moba"),
+"fire": SubResource("Animation_ucs7p")
+}
+
+[node name="Fireball" type="Area2D"]
+position = Vector2(-41, 1)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_u3fpi")
+cooldown = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 4.71239
+texture = ExtResource("1_erhff")
+hframes = 8
+vframes = 7
+frame = 3
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(45, 0)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_h4ycf")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_mc6wl")]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(59, 0)
+rotation = 4.71239
+shape = SubResource("CapsuleShape2D_oekfo")
+disabled = true
+debug_color = Color(0.701961, 0.27451, 1, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+audio_max_polyphony = 8
+libraries = {
+"": SubResource("AnimationLibrary_rx4cs")
+}
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="Hitbox"]

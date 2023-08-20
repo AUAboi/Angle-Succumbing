@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://s4dci4n30kie"]
+
+[ext_resource type="Script" path="res://Skills/hermes_feet/hermes_feet.gd" id="1_xw04m"]
+[ext_resource type="PackedScene" uid="uid://del6ogyle0ixf" path="res://Overlap/cooldown.tscn" id="2_43aj1"]
+
+[node name="HermesFeet" type="Node"]
+script = ExtResource("1_xw04m")
+dash_speed = null
+cooldown = null
+speed_buff = null
+
+[node name="Cooldown" parent="." instance=ExtResource("2_43aj1")]
+
+[node name="Timer" type="Timer" parent="."]

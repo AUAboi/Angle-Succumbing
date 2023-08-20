@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://del6ogyle0ixf"]
+
+[ext_resource type="Script" path="res://Overlap/cooldown.gd" id="1_f6exk"]
+
+[node name="Cooldown" type="Timer"]
+script = ExtResource("1_f6exk")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

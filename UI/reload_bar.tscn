@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp6c6yqehastm"]
+
+[ext_resource type="Script" path="res://UI/reload_bar.gd" id="1_47l34"]
+[ext_resource type="Texture2D" uid="uid://iabeln1cv7v2" path="res://UI/progress-bar-circle.png" id="1_cg8ga"]
+[ext_resource type="Texture2D" uid="uid://diap13xymsg6v" path="res://UI/progress-bar-frame.png" id="2_ypv7i"]
+
+[node name="ReloadBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_47l34")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 125.0
+offset_bottom = 125.0
+scale = Vector2(0.05, 0.05)
+fill_mode = 4
+texture_under = ExtResource("1_cg8ga")
+texture_over = ExtResource("2_ypv7i")
+texture_progress = ExtResource("1_cg8ga")
+tint_under = Color(0.411765, 0.815686, 0, 0.662745)
+tint_progress = Color(0, 0, 0, 0.729412)

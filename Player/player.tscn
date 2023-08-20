@@ -1,0 +1,132 @@
+[gd_scene load_steps=19 format=3 uid="uid://bkmgm13gg1udv"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_q38jm"]
+[ext_resource type="Texture2D" uid="uid://co8go2mqmwmh2" path="res://Player/assets/GrandmasterWarlockIdle.png" id="2_4b2uo"]
+[ext_resource type="Texture2D" uid="uid://d1n5y88vvnm8p" path="res://Shadows/MediumShadow.png" id="3_nrkyp"]
+[ext_resource type="PackedScene" uid="uid://cpicw6bml8emt" path="res://Weapons/staff.tscn" id="4_6lcvg"]
+[ext_resource type="Texture2D" uid="uid://slqdu421lebc" path="res://Environment/LightSprite.png" id="4_twoih"]
+[ext_resource type="PackedScene" uid="uid://cjk2j1x8svijx" path="res://Overlap/hurtbox.tscn" id="5_a1pmt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdrga"]
+atlas = ExtResource("2_4b2uo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eomkd"]
+atlas = ExtResource("2_4b2uo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gonme"]
+atlas = ExtResource("2_4b2uo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyovb"]
+atlas = ExtResource("2_4b2uo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1jbu"]
+atlas = ExtResource("2_4b2uo")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn5mj"]
+atlas = ExtResource("2_4b2uo")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kei5y"]
+atlas = ExtResource("2_4b2uo")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8kvg"]
+atlas = ExtResource("2_4b2uo")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5gbm"]
+atlas = ExtResource("2_4b2uo")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yppf3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdrga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eomkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gonme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyovb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1jbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn5mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kei5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8kvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5gbm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ngniq"]
+radius = 3.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yrvgk"]
+radius = 7.0
+height = 32.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_q38jm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yppf3")
+frame = 5
+frame_progress = 0.370182
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 14)
+texture = ExtResource("3_nrkyp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
+
+[node name="Staff" parent="." instance=ExtResource("4_6lcvg")]
+position = Vector2(-2, -19)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ngniq")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = ExtResource("4_twoih")
+texture_scale = 0.5
+
+[node name="Hurtbox" parent="." instance=ExtResource("5_a1pmt")]
+visible = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_yrvgk")
+debug_color = Color(0.917647, 0.27451, 0.207843, 0.419608)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="Hurtbox"]
