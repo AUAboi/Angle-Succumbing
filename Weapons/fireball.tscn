@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1p7voi8hu0h0"]
+[gd_scene load_steps=10 format=3 uid="uid://d1p7voi8hu0h0"]
 
-[ext_resource type="Texture2D" uid="uid://n0hg4np3jl8j" path="res://Weapons/pngwing.com.png" id="1_erhff"]
+[ext_resource type="Texture2D" uid="uid://n0hg4np3jl8j" path="res://Weapons/assets/pngwing.com.png" id="1_erhff"]
 [ext_resource type="Script" path="res://Weapons/fireball.gd" id="1_u3fpi"]
 [ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="3_mc6wl"]
 
@@ -13,26 +13,14 @@ radius = 20.0
 height = 46.0
 
 [sub_resource type="Animation" id="Animation_3moba"]
-length = 0.001
+length = 1.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -67,10 +55,14 @@ tracks/1/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_d0q1b"]
+resource_name = "test"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rx4cs"]
 _data = {
 "RESET": SubResource("Animation_3moba"),
-"fire": SubResource("Animation_ucs7p")
+"fire": SubResource("Animation_ucs7p"),
+"test": SubResource("Animation_d0q1b")
 }
 
 [node name="Fireball" type="Area2D"]
@@ -85,7 +77,7 @@ rotation = 4.71239
 texture = ExtResource("1_erhff")
 hframes = 8
 vframes = 7
-frame = 3
+frame = 48
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(45, 0)

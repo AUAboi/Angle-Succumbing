@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bkmgm13gg1udv"]
+[gd_scene load_steps=20 format=3 uid="uid://bkmgm13gg1udv"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_q38jm"]
 [ext_resource type="Texture2D" uid="uid://co8go2mqmwmh2" path="res://Player/assets/GrandmasterWarlockIdle.png" id="2_4b2uo"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpicw6bml8emt" path="res://Weapons/staff.tscn" id="4_6lcvg"]
 [ext_resource type="Texture2D" uid="uid://slqdu421lebc" path="res://Environment/LightSprite.png" id="4_twoih"]
 [ext_resource type="PackedScene" uid="uid://cjk2j1x8svijx" path="res://Overlap/hurtbox.tscn" id="5_a1pmt"]
+[ext_resource type="PackedScene" uid="uid://dkjb6imugw8dq" path="res://Weapons/AutoAttacks/ring_of_fire.tscn" id="7_385cp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sdrga"]
 atlas = ExtResource("2_4b2uo")
@@ -120,12 +121,13 @@ texture = ExtResource("4_twoih")
 texture_scale = 0.5
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_a1pmt")]
-visible = false
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-2, 0)
 shape = SubResource("CapsuleShape2D_yrvgk")
 debug_color = Color(0.917647, 0.27451, 0.207843, 0.419608)
+
+[node name="RingOfFire" parent="." instance=ExtResource("7_385cp")]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 

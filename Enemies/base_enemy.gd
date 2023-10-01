@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var friction: float = 200.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
-@onready var stats: Node2D = $Stats 
+@onready var stats: Node = $Stats 
 @onready var HitEffect: PackedScene = preload("res://Effects/hit_effect.tscn")
 @onready var DeathEffect: PackedScene = preload("res://Effects/enemy_death_effect.tscn")
 @onready var softCollision: Area2D = $SoftCollision
@@ -29,12 +29,13 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_hurtbox_area_entered(area: Area2D):
-	var knockback_direction = -player_direction
-	stats.health -= area.damage
-	velocity = knockback_direction * 120
-	var hitEffect = HitEffect.instantiate()
-	get_tree().current_scene.add_child(hitEffect)
-	hitEffect.global_position = global_position
+	if not area.is_in_group("safe"):
+		var knockback_direction = -player_direction
+		stats.health -= area.damage
+		velocity = knockback_direction * 120
+		var hitEffect = HitEffect.instantiate()
+		get_tree().current_scene.add_child(hitEffect)
+		hitEffect.global_position = global_position
 
 func _on_stats_no_health():
 	queue_free()

@@ -5,10 +5,10 @@
 
 [node name="HermesFeet" type="Node"]
 script = ExtResource("1_xw04m")
-dash_speed = null
-cooldown = null
-speed_buff = null
 
 [node name="Cooldown" parent="." instance=ExtResource("2_43aj1")]
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

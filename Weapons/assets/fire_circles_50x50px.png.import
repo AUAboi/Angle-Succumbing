@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n0hg4np3jl8j"
-path="res://.godot/imported/pngwing.com.png-2b3fca61ab36dff0ec6c21fdafb38456.ctex"
+uid="uid://do7dyn1m6yojr"
+path="res://.godot/imported/fire_circles_50x50px.png-c59ed77275f2878215ddeb2b38028e07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/pngwing.com.png"
-dest_files=["res://.godot/imported/pngwing.com.png-2b3fca61ab36dff0ec6c21fdafb38456.ctex"]
+source_file="res://Weapons/assets/fire_circles_50x50px.png"
+dest_files=["res://.godot/imported/fire_circles_50x50px.png-c59ed77275f2878215ddeb2b38028e07.ctex"]
 
 [params]
 

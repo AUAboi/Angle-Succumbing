@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvdfof3s2dwxs"]
+[gd_scene load_steps=9 format=3 uid="uid://cvdfof3s2dwxs"]
 
 [ext_resource type="Shader" uid="uid://j013b2l4ydr" path="res://world.tres" id="2_548ce"]
 [ext_resource type="PackedScene" uid="uid://bkmgm13gg1udv" path="res://Player/player.tscn" id="2_j4t6d"]
 [ext_resource type="Texture2D" uid="uid://c33ukav7i6s2s" path="res://World/mainlevbuild.png" id="2_o4g2u"]
 [ext_resource type="PackedScene" uid="uid://bhpmwjdewovv4" path="res://Enemies/pixie.tscn" id="4_3wrh4"]
-[ext_resource type="PackedScene" uid="uid://7jdxn1tq7whk" path="res://Enemies/chimera.tscn" id="5_4ssai"]
 [ext_resource type="PackedScene" uid="uid://by2h1dw1hss7" path="res://UI/health_ui.tscn" id="6_rx0hh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ph7mk"]
@@ -613,6 +612,7 @@ offset_right = 3024.0
 offset_bottom = 1848.0
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 editor_only = true
 
 [node name="Entities" type="Node2D" parent="."]
@@ -624,38 +624,8 @@ position = Vector2(-95, 256)
 [node name="Enemies" type="Node2D" parent="Entities"]
 y_sort_enabled = true
 
-[node name="Pixie" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
-position = Vector2(-92, 89)
-
-[node name="Pixie4" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
-position = Vector2(43, 300)
-
-[node name="Pixie2" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
-position = Vector2(-230, 157)
-
-[node name="Chimera" parent="Entities/Enemies" instance=ExtResource("5_4ssai")]
-position = Vector2(-254, 455)
-
-[node name="Chimera2" parent="Entities/Enemies" instance=ExtResource("5_4ssai")]
-position = Vector2(-183, 39)
-
-[node name="Chimera3" parent="Entities/Enemies" instance=ExtResource("5_4ssai")]
-position = Vector2(137, 146)
-
-[node name="Pixie3" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
-position = Vector2(-92, 89)
-
-[node name="Pixie5" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
-position = Vector2(43, 300)
-
 [node name="Pixie6" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
-position = Vector2(-230, 157)
-
-[node name="Chimera4" parent="Entities/Enemies" instance=ExtResource("5_4ssai")]
-position = Vector2(-254, 455)
-
-[node name="Chimera5" parent="Entities/Enemies" instance=ExtResource("5_4ssai")]
-position = Vector2(-183, 39)
+position = Vector2(-85, 249)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 offset = Vector2(20, 20)

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @export var speed: float = 80
 @export var acceleration: float = 400.0
 @export var friction: float = 600.0
@@ -7,13 +9,12 @@ extends CharacterBody2D
 @onready var weapon: Node = $Staff
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox: Area2D = $Hurtbox
-@onready var timer: Timer = $Timer
 
 var movement: Vector2 = Vector2.ZERO
 
 var stats  = PlayerStats
 
-var dash: Node = load_skill("hermes_feet")
+var dash: Node = load_skill("dash")
 
 func _ready():
 	Global.Player = self
@@ -22,7 +23,6 @@ func _ready():
 	
 
 func _physics_process(delta: float):
-	print(speed)
 	var mouse_position: Vector2 = get_global_mouse_position()
 	handle_movement(delta)
 	handle_shooting(mouse_position)
@@ -58,7 +58,7 @@ func handle_shooting(mouse_position: Vector2):
 
 
 
-func _on_hurtbox_area_entered():
+func _on_hurtbox_area_entered(area: Area2D):
 	if !hurtbox.invincible:
 		stats.health -= 1
 		hurtbox.create_hit_effect()

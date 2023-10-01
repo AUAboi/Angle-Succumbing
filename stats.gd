@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 signal no_health
 signal health_changed(value: int)
