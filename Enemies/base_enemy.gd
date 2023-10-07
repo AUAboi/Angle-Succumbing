@@ -12,10 +12,10 @@ extends CharacterBody2D
 
 var player_direction: Vector2 = Vector2.ZERO
 
-func _ready():
+func _ready() -> void:
 	sprite.play("default")
-
-func _physics_process(delta):
+	
+func _physics_process(delta: float) -> void:
 	if(Global.Player != null):
 		player_direction = global_position.direction_to(Global.Player.global_position)
 	else:

@@ -2,17 +2,16 @@ extends Sprite2D
 
 @export var spell: PackedScene = preload("res://Weapons/fireball.tscn")
 
-
 @onready var muzzle: Marker2D = $Muzzle
 @onready var timer: Timer = $Timer
 @onready var bar: Control = $ReloadBar
 
-var progress: int = 0
+var progress: float = 0.00
 var is_on_cooldown: bool = false
 var cooldown : float
 var bar_speed: float 
 
-func _process(delta):
+func _process(_delta: float):
 	bar.set_value(progress)
 	if is_on_cooldown:
 		progress = timer.time_left * bar_speed

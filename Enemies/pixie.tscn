@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cjk2j1x8svijx" path="res://Overlap/hurtbox.tscn" id="3_t318n"]
 [ext_resource type="PackedScene" uid="uid://onkp6yacs7v4" path="res://stats.tscn" id="4_oxyjr"]
 [ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="5_rbx7e"]
-[ext_resource type="PackedScene" path="res://Overlap/soft_collision.tscn" id="7_p1eq3"]
+[ext_resource type="PackedScene" uid="uid://dcqc76qh7nxhk" path="res://Overlap/soft_collision.tscn" id="7_p1eq3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0mwsr"]
 atlas = ExtResource("1_n785a")

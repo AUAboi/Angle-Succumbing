@@ -7,20 +7,20 @@ class_name Player
 @export var friction: float = 600.0
 
 @onready var weapon: Node = $Staff
-@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox: Area2D = $Hurtbox
 
 var movement: Vector2 = Vector2.ZERO
 
 var stats  = PlayerStats
 
-var dash: Node = load_skill("dash")
+var skill: Node = load_skill("dash")
+var super_attack: Node = load_super("ring_of_fire")
 
 func _ready():
 	Global.Player = self
-	animatedSprite.play("default")
+	animated_sprite.play("default")
 	stats.no_health.connect(queue_free)
-	
 
 func _physics_process(delta: float):
 	var mouse_position: Vector2 = get_global_mouse_position()
@@ -28,8 +28,11 @@ func _physics_process(delta: float):
 	handle_shooting(mouse_position)
 	
 	if Input.is_action_just_pressed("dash"):
-		dash.execute(self, mouse_position)
-		
+		skill.execute(self, mouse_position)
+	
+	if Input.is_action_just_pressed("alt_ability"):
+		super_attack.execute()
+	
 	move_and_slide()
 
 func handle_movement(delta: float):
@@ -52,13 +55,11 @@ func handle_shooting(mouse_position: Vector2):
 	if Input.is_action_just_pressed("shoot"):
 		weapon.shoot()
 	if mouse_position.x > position.x:
-		animatedSprite.flip_h = false
+		animated_sprite.flip_h = false
 	elif mouse_position.x < position.x:
-		animatedSprite.flip_h = true
+		animated_sprite.flip_h = true
 
-
-
-func _on_hurtbox_area_entered(area: Area2D):
+func _on_hurtbox_area_entered(_area: Area2D):
 	if !hurtbox.invincible:
 		stats.health -= 1
 		hurtbox.create_hit_effect()
@@ -66,6 +67,12 @@ func _on_hurtbox_area_entered(area: Area2D):
 
 func load_skill(skillName: String):
 	var scene: PackedScene = load("res://Skills/"+ skillName +"/"+ skillName +".tscn")
+	var node: Node = scene.instantiate()
+	add_child(node)
+	return node
+
+func load_super(superName: String):
+	var scene: PackedScene = load("res://Super/"+ superName + ".tscn")
 	var node: Node = scene.instantiate()
 	add_child(node)
 	return node
