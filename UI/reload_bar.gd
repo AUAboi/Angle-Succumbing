@@ -1,6 +1,6 @@
 extends Control
 
-@onready var textureProgressBar: TextureProgressBar = $TextureProgressBar
+@onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 
 func set_value(value: float) -> void:
-	textureProgressBar.value = value
+	texture_progress_bar.value = value

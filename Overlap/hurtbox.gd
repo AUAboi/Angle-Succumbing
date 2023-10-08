@@ -16,25 +16,25 @@ var invincible: bool = false:
 		else:
 			emit_signal("invincibilty_ended")
 
-func start_invincibilty(duration: float):
+func start_invincibilty(duration: float) -> void:
 	self.invincible = true
 	timer.start(duration)
 
-func end_invincibilty():
+func end_invincibilty() -> void:
 	timer.emit_signal("timeout")
 
-func create_hit_effect():
-	var hitEffect = HitEffect.instantiate()
-	get_tree().current_scene.add_child(hitEffect)
-	hitEffect.global_position = global_position
+func create_hit_effect() -> void:
+	var hit_effect = HitEffect.instantiate()
+	get_tree().current_scene.add_child(hit_effect)
+	hit_effect.global_position = global_position
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	self.invincible = false
 
-func _on_invincibilty_started():
+func _on_invincibilty_started() -> void:
 	set_deferred("monitoring", false)
 
-func _on_invincibilty_ended():
+func _on_invincibilty_ended() -> void:
 	#this is not called in physics process so deffered is not needed
 	monitoring = true
 	

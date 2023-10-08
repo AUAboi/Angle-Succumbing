@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var stats: Node = $Stats 
 @onready var HitEffect: PackedScene = preload("res://Effects/hit_effect.tscn")
 @onready var DeathEffect: PackedScene = preload("res://Effects/enemy_death_effect.tscn")
-@onready var softCollision: Area2D = $SoftCollision
+@onready var soft_collision: Area2D = $SoftCollision
 
 var player_direction: Vector2 = Vector2.ZERO
 
@@ -21,8 +21,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		player_direction = Vector2.ZERO
 
-	if softCollision.is_colliding():
-		velocity += softCollision.get_push_vector() * delta * 400
+	if soft_collision.is_colliding():
+		velocity += soft_collision.get_push_vector() * delta * 400
 
 	velocity = velocity.move_toward(player_direction * speed, acceleration * delta)
 	sprite.flip_h = velocity.x < 0
@@ -39,6 +39,6 @@ func _on_hurtbox_area_entered(area: Area2D):
 
 func _on_stats_no_health():
 	queue_free()
-	var deathEffect: AnimatedSprite2D = DeathEffect.instantiate()
-	get_tree().current_scene.add_child(deathEffect)
-	deathEffect.global_position = global_position
+	var death_effect: AnimatedSprite2D = DeathEffect.instantiate()
+	get_tree().current_scene.add_child(death_effect)
+	death_effect.global_position = global_position

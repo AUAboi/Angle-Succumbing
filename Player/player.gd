@@ -17,12 +17,12 @@ var stats  = PlayerStats
 var skill: Node = load_skill("dash")
 var super_attack: Node = load_super("ring_of_fire")
 
-func _ready():
+func _ready() -> void:
 	Global.Player = self
 	animated_sprite.play("default")
 	stats.no_health.connect(queue_free)
 
-func _physics_process(delta: float):
+func _physics_process(delta: float) -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
 	handle_movement(delta)
 	handle_shooting(mouse_position)
@@ -35,7 +35,7 @@ func _physics_process(delta: float):
 	
 	move_and_slide()
 
-func handle_movement(delta: float):
+func handle_movement(delta: float) -> void:
 	var input_vector: Vector2 = Vector2.ZERO
 	
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -50,7 +50,7 @@ func handle_movement(delta: float):
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 				
 
-func handle_shooting(mouse_position: Vector2):
+func handle_shooting(mouse_position: Vector2) -> void:
 	weapon.muzzle.look_at(mouse_position)
 	if Input.is_action_just_pressed("shoot"):
 		weapon.shoot()
@@ -59,20 +59,20 @@ func handle_shooting(mouse_position: Vector2):
 	elif mouse_position.x < position.x:
 		animated_sprite.flip_h = true
 
-func _on_hurtbox_area_entered(_area: Area2D):
+func _on_hurtbox_area_entered(_area: Area2D) -> void:
 	if !hurtbox.invincible:
 		stats.health -= 1
 		hurtbox.create_hit_effect()
 		hurtbox.start_invincibilty(0.5)
 
-func load_skill(skillName: String):
-	var scene: PackedScene = load("res://Skills/"+ skillName +"/"+ skillName +".tscn")
-	var node: Node = scene.instantiate()
+func load_skill(skillName: String)  -> Node:
+	var Scene: PackedScene = load("res://Skills/"+ skillName +"/"+ skillName +".tscn")
+	var node: Node = Scene.instantiate()
 	add_child(node)
 	return node
 
-func load_super(superName: String):
-	var scene: PackedScene = load("res://Super/"+ superName + ".tscn")
-	var node: Node = scene.instantiate()
+func load_super(superName: String) -> Node:
+	var Scene: PackedScene = load("res://Super/"+ superName + ".tscn")
+	var node: Node = Scene.instantiate()
 	add_child(node)
 	return node

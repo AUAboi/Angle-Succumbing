@@ -5,7 +5,7 @@ extends Node
 
 @onready var timer: Timer = $Cooldown
 
-func execute(entity: Player, direction: Vector2):
+func execute(entity: Player, direction: Vector2) -> void:
 	if (!timer.is_on_cooldown):
 		entity.velocity += entity.position.direction_to(direction) * dash_speed
 		timer.start_cooldown(cooldown)
