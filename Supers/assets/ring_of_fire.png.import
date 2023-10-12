@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blkjhy5itwlki"
-path="res://.godot/imported/ring_of_fire.png-c53f901286d2b19e398dc7f7ad746de8.ctex"
+path="res://.godot/imported/ring_of_fire.png-7156dcc8c362aa2ac8457687001a9dba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Super/assets/ring_of_fire.png"
-dest_files=["res://.godot/imported/ring_of_fire.png-c53f901286d2b19e398dc7f7ad746de8.ctex"]
+source_file="res://Supers/assets/ring_of_fire.png"
+dest_files=["res://.godot/imported/ring_of_fire.png-7156dcc8c362aa2ac8457687001a9dba.ctex"]
 
 [params]
 

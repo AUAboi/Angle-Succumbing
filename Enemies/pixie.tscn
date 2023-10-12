@@ -57,13 +57,13 @@ radius = 5.0
 
 [node name="Pixie" type="CharacterBody2D"]
 position = Vector2(0, -14)
-collision_layer = 0
+collision_layer = 4
 script = ExtResource("1_7egaj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xdigk")
 frame = 3
-frame_progress = 1.0
+frame_progress = 0.83799
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -94,6 +94,7 @@ collision_layer = 64
 shape = SubResource("CircleShape2D_eki21")
 
 [node name="SoftCollision" parent="." instance=ExtResource("7_p1eq3")]
+visible = false
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 position = Vector2(0, 14)

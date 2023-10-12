@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://dkjb6imugw8dq"]
 
-[ext_resource type="Script" path="res://Super/ring_of_fire.gd" id="1_xmm2o"]
-[ext_resource type="Texture2D" uid="uid://blkjhy5itwlki" path="res://Super/assets/ring_of_fire.png" id="2_0rmnm"]
-[ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="3_1hxxm"]
-[ext_resource type="Script" path="res://addons/donut_collision_polygon2D/donut_collision_polygon2D.gd" id="4_ltgtj"]
+[ext_resource type="Script" path="res://Supers/ring_of_fire/ring_of_fire.gd" id="1_mmehh"]
+[ext_resource type="Texture2D" uid="uid://blkjhy5itwlki" path="res://Supers/assets/ring_of_fire.png" id="2_fh0hs"]
+[ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="3_so02a"]
+[ext_resource type="Script" path="res://addons/donut_collision_polygon2D/donut_collision_polygon2D.gd" id="4_s67j4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mo18v"]
 radius = 42.0476
@@ -95,11 +95,11 @@ _data = {
 }
 
 [node name="RingOfFire" type="Area2D"]
-script = ExtResource("1_xmm2o")
+script = ExtResource("1_mmehh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_0rmnm")
+texture = ExtResource("2_fh0hs")
 hframes = 9
 vframes = 9
 
@@ -107,7 +107,7 @@ vframes = 9
 shape = SubResource("CircleShape2D_mo18v")
 disabled = true
 
-[node name="Hitbox" parent="." instance=ExtResource("3_1hxxm")]
+[node name="Hitbox" parent="." instance=ExtResource("3_so02a")]
 visible = false
 collision_layer = 32
 collision_mask = 16
@@ -119,7 +119,7 @@ disabled = true
 position = Vector2(1, 1)
 polygon = PackedVector2Array(2.93906e-15, -48, 9.15883, -47.1181, 17.9811, -44.5048, 26.1427, -40.2562, 33.9411, -33.9411, 39.7938, -26.8413, 44.1842, -18.7551, 46.9511, -9.97976, 48, 0, 47.1181, 9.15883, 44.5048, 17.9811, 40.2562, 26.1427, 33.9411, 33.9411, 26.8413, 39.7938, 18.7551, 44.1842, 9.97976, 46.9511, 2.93906e-15, 48, -9.15883, 47.1181, -17.9811, 44.5048, -26.1427, 40.2562, -33.9411, 33.9411, -39.7938, 26.8413, -44.1842, 18.7551, -46.9511, 9.97976, -48, 5.87811e-15, -47.1181, -9.15883, -44.5048, -17.9811, -40.2562, -26.1427, -33.9411, -33.9411, -26.8413, -39.7938, -18.7551, -44.1842, -9.97976, -46.9511, -8.81717e-15, -48, -6.61287e-15, -36, -7.48482, -35.2133, -14.0663, -33.1382, -20.1309, -29.8454, -25.4558, -25.4558, -30.1921, -19.607, -33.3786, -13.4858, -35.3386, -6.86912, -36, 4.40858e-15, -35.2133, 7.48482, -33.1382, 14.0663, -29.8454, 20.1309, -25.4558, 25.4558, -19.607, 30.1921, -13.4858, 33.3786, -6.86912, 35.3386, 2.20429e-15, 36, 7.48482, 35.2133, 14.0663, 33.1382, 20.1309, 29.8454, 25.4558, 25.4558, 30.1921, 19.607, 33.3786, 13.4858, 35.3386, 6.86912, 36, 0, 35.2133, -7.48482, 33.1382, -14.0663, 29.8454, -20.1309, 25.4558, -25.4558, 19.607, -30.1921, 13.4858, -33.3786, 6.86912, -35.3386, 2.20429e-15, -36, 0.0001, -47.9999)
 disabled = true
-script = ExtResource("4_ltgtj")
+script = ExtResource("4_s67j4")
 radius = 42.0
 width = 12.0
 

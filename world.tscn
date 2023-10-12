@@ -625,7 +625,7 @@ position = Vector2(-95, 256)
 y_sort_enabled = true
 
 [node name="Pixie6" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
-position = Vector2(-85, 249)
+position = Vector2(-67, 17)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 offset = Vector2(20, 20)

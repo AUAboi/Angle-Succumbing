@@ -14,8 +14,8 @@ var movement: Vector2 = Vector2.ZERO
 
 var stats  = PlayerStats
 
-var skill: Node = load_skill("dash")
-var super_attack: Node = load_super("ring_of_fire")
+var skill: Node = load_ability("dash", "skills")
+var super_attack: Node = load_ability("death_curse", "supers")
 
 func _ready() -> void:
 	Global.Player = self
@@ -65,14 +65,10 @@ func _on_hurtbox_area_entered(_area: Area2D) -> void:
 		hurtbox.create_hit_effect()
 		hurtbox.start_invincibilty(0.5)
 
-func load_skill(skillName: String)  -> Node:
-	var Scene: PackedScene = load("res://Skills/"+ skillName +"/"+ skillName +".tscn")
+func load_ability(abilityName: String, abilityType: String)  -> Node:
+	var Scene: PackedScene = load("res://"+ abilityType.capitalize() +"/"+ abilityName +"/"+ abilityName +".tscn")
 	var node: Node = Scene.instantiate()
 	add_child(node)
 	return node
 
-func load_super(superName: String) -> Node:
-	var Scene: PackedScene = load("res://Super/"+ superName + ".tscn")
-	var node: Node = Scene.instantiate()
-	add_child(node)
-	return node
+

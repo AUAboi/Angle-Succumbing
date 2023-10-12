@@ -1,0 +1,152 @@
+[gd_scene load_steps=23 format=3 uid="uid://dgguijfbitul2"]
+
+[ext_resource type="Texture2D" uid="uid://w43qwvea6jxv" path="res://Supers/assets/death_curse.png" id="1_m40uv"]
+[ext_resource type="Script" path="res://Supers/death_curse/death_curse_circle.gd" id="2_gi2qg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4npc"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(600, 1300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85s2l"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(500, 1300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13v1m"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(400, 1300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6dsr"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(300, 1300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt5ke"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(200, 1300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl2l6"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(100, 1300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7pnm"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(0, 1300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lywn"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(1400, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxrta"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(1300, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elj68"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(1200, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ra4g"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(1100, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnlbp"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(1000, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv4ou"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(900, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tba6d"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(800, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmew0"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(700, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiu3d"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(600, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtb34"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(500, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7cir"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(400, 1200, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37604"]
+atlas = ExtResource("1_m40uv")
+region = Rect2(300, 1200, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15qtj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4npc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85s2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13v1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6dsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt5ke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl2l6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7pnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lywn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxrta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elj68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ra4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnlbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv4ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tba6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmew0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiu3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtb34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7cir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37604")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="DeathCurseCircle" type="AnimatedSprite2D"]
+show_behind_parent = true
+scale = Vector2(0.503771, 0.496586)
+sprite_frames = SubResource("SpriteFrames_15qtj")
+frame_progress = 0.764027
+script = ExtResource("2_gi2qg")

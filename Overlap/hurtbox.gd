@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Hurtbox
+
 signal invincibilty_started
 signal invincibilty_ended
 

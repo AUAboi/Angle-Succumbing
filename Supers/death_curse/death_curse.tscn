@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxbctn6dyt7ny"]
+
+[ext_resource type="Script" path="res://Supers/death_curse/death_curse.gd" id="1_61rgp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53knc"]
+radius = 262.488
+
+[node name="DeathCurse" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_61rgp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_53knc")
+debug_color = Color(0.788235, 0.396078, 0.47451, 0.419608)
