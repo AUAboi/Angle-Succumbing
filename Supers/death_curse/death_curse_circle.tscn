@@ -146,7 +146,7 @@ animations = [{
 
 [node name="DeathCurseCircle" type="AnimatedSprite2D"]
 show_behind_parent = true
-scale = Vector2(0.503771, 0.496586)
+scale = Vector2(0.3, 0.296)
 sprite_frames = SubResource("SpriteFrames_15qtj")
 frame_progress = 0.764027
 script = ExtResource("2_gi2qg")

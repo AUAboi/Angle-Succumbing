@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cjk2j1x8svijx" path="res://Overlap/hurtbox.tscn" id="4_cngeo"]
 [ext_resource type="PackedScene" uid="uid://onkp6yacs7v4" path="res://stats.tscn" id="5_bdwx8"]
 [ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="6_p6l75"]
-[ext_resource type="PackedScene" path="res://Overlap/soft_collision.tscn" id="7_u2ktj"]
+[ext_resource type="PackedScene" uid="uid://dcqc76qh7nxhk" path="res://Overlap/soft_collision.tscn" id="7_u2ktj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1n5rf"]
 atlas = ExtResource("3_4afdq")
@@ -107,7 +107,6 @@ position = Vector2(0, 14)
 texture = ExtResource("3_1intn")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_cngeo")]
-visible = false
 position = Vector2(0, -2)
 collision_layer = 16
 collision_mask = 32
@@ -122,7 +121,6 @@ debug_color = Color(0.913725, 0, 0.721569, 0.419608)
 max_health = 3
 
 [node name="Hitbox" parent="." instance=ExtResource("6_p6l75")]
-visible = false
 collision_layer = 64
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]

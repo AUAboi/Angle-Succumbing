@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Angle Succumbing"
 config/tags=PackedStringArray("learning", "self")
-run/main_scene="res://world.tscn"
+run/main_scene="res://UI/game_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 

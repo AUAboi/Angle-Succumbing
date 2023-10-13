@@ -8,9 +8,10 @@ class_name Enemy
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
 @onready var stats: Node = $Stats 
-@onready var HitEffect: PackedScene = preload("res://Effects/hit_effect.tscn")
-@onready var DeathEffect: PackedScene = preload("res://Effects/enemy_death_effect.tscn")
 @onready var soft_collision: Area2D = $SoftCollision
+
+var HitEffect: PackedScene = preload("res://Effects/hit_effect.tscn")
+var DeathEffect: PackedScene = preload("res://Effects/enemy_death_effect.tscn")
 
 var player_direction: Vector2 = Vector2.ZERO
 

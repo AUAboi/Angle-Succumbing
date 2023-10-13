@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ogar02q4ntke"]
+
+[ext_resource type="Script" path="res://Enemies/base_enemy.gd" id="1_x5uya"]
+[ext_resource type="PackedScene" uid="uid://cjk2j1x8svijx" path="res://Overlap/hurtbox.tscn" id="4_umo8r"]
+[ext_resource type="PackedScene" uid="uid://onkp6yacs7v4" path="res://stats.tscn" id="5_lllkr"]
+[ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="6_fj1dh"]
+[ext_resource type="PackedScene" uid="uid://dcqc76qh7nxhk" path="res://Overlap/soft_collision.tscn" id="7_oh7en"]
+
+[node name="BaseEnemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_x5uya")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_umo8r")]
+collision_layer = 16
+collision_mask = 32
+
+[node name="Stats" parent="." instance=ExtResource("5_lllkr")]
+
+[node name="Hitbox" parent="." instance=ExtResource("6_fj1dh")]
+collision_layer = 64
+
+[node name="SoftCollision" parent="." instance=ExtResource("7_oh7en")]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered" flags=18]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health" flags=18]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
+[editable path="SoftCollision"]
