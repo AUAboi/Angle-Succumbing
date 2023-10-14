@@ -60,6 +60,7 @@ collision_layer = 4
 script = ExtResource("1_7egaj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_xdigk")
 frame = 3
@@ -73,6 +74,7 @@ shape = SubResource("CircleShape2D_tvut2")
 texture = ExtResource("3_sskeg")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_t318n")]
+visible = false
 position = Vector2(0, -14)
 collision_layer = 16
 collision_mask = 32
@@ -82,9 +84,10 @@ shape = SubResource("CircleShape2D_shfmy")
 debug_color = Color(0.913725, 0, 0.721569, 0.419608)
 
 [node name="Stats" parent="." instance=ExtResource("4_oxyjr")]
-max_health = 7
+max_health = 6
 
 [node name="Hitbox" parent="." instance=ExtResource("5_rbx7e")]
+visible = false
 position = Vector2(0, -14)
 collision_layer = 64
 
@@ -92,6 +95,7 @@ collision_layer = 64
 shape = SubResource("CircleShape2D_eki21")
 
 [node name="SoftCollision" parent="." instance=ExtResource("7_p1eq3")]
+visible = false
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 shape = SubResource("CircleShape2D_6k8hd")

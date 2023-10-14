@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ll0b6f587lg"]
+
+[ext_resource type="PackedScene" uid="uid://by2h1dw1hss7" path="res://UI/health_ui.tscn" id="1_mlf60"]
+
+[node name="HUD" type="CanvasLayer"]
+offset = Vector2(20, 20)
+transform = Transform2D(1, 0, 0, 1, 20, 20)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthUI" parent="Control" instance=ExtResource("1_mlf60")]

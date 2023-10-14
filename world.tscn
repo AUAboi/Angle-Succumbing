@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvdfof3s2dwxs"]
+[gd_scene load_steps=9 format=3 uid="uid://cvdfof3s2dwxs"]
 
 [ext_resource type="Shader" uid="uid://j013b2l4ydr" path="res://world.tres" id="2_548ce"]
 [ext_resource type="PackedScene" uid="uid://bkmgm13gg1udv" path="res://Player/player.tscn" id="2_j4t6d"]
 [ext_resource type="Texture2D" uid="uid://c33ukav7i6s2s" path="res://World/mainlevbuild.png" id="2_o4g2u"]
 [ext_resource type="PackedScene" uid="uid://bhpmwjdewovv4" path="res://Enemies/pixie.tscn" id="4_3wrh4"]
-[ext_resource type="PackedScene" uid="uid://7jdxn1tq7whk" path="res://Enemies/chimera.tscn" id="4_h7xvm"]
-[ext_resource type="PackedScene" uid="uid://by2h1dw1hss7" path="res://UI/health_ui.tscn" id="6_rx0hh"]
+[ext_resource type="PackedScene" uid="uid://b2ll0b6f587lg" path="res://UI/hud.tscn" id="5_qjvba"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ph7mk"]
 texture = ExtResource("2_o4g2u")
@@ -625,52 +624,23 @@ position = Vector2(-95, 256)
 [node name="Enemies" type="Node2D" parent="Entities"]
 y_sort_enabled = true
 
-[node name="Chimera" parent="Entities/Enemies" instance=ExtResource("4_h7xvm")]
-
 [node name="Pixie" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
 position = Vector2(376, 333)
-
-[node name="Chimera2" parent="Entities/Enemies" instance=ExtResource("4_h7xvm")]
-position = Vector2(376, 319)
 
 [node name="Pixie2" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
 position = Vector2(376, 333)
 
-[node name="Chimera3" parent="Entities/Enemies" instance=ExtResource("4_h7xvm")]
-position = Vector2(376, 319)
-
 [node name="Pixie3" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
 position = Vector2(376, 333)
-
-[node name="Chimera4" parent="Entities/Enemies" instance=ExtResource("4_h7xvm")]
-position = Vector2(376, 319)
 
 [node name="Pixie4" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
 position = Vector2(376, 333)
 
-[node name="Chimera5" parent="Entities/Enemies" instance=ExtResource("4_h7xvm")]
-position = Vector2(376, 319)
-
 [node name="Pixie5" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
 
-[node name="Chimera6" parent="Entities/Enemies" instance=ExtResource("4_h7xvm")]
-
 [node name="Pixie6" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
-
-[node name="Chimera7" parent="Entities/Enemies" instance=ExtResource("4_h7xvm")]
-position = Vector2(-408, -149)
 
 [node name="Pixie7" parent="Entities/Enemies" instance=ExtResource("4_3wrh4")]
 position = Vector2(-408, -135)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-offset = Vector2(20, 20)
-transform = Transform2D(1, 0, 0, 1, 20, 20)
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HealthUI" parent="CanvasLayer/Control" instance=ExtResource("6_rx0hh")]
+[node name="HUD" parent="." instance=ExtResource("5_qjvba")]

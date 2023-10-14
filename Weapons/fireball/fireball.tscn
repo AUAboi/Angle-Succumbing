@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1p7voi8hu0h0"]
+[gd_scene load_steps=9 format=3 uid="uid://5mb8tjes5k2q"]
 
-[ext_resource type="Texture2D" uid="uid://n0hg4np3jl8j" path="res://Weapons/assets/pngwing.com.png" id="1_erhff"]
-[ext_resource type="Script" path="res://Weapons/fireball.gd" id="1_u3fpi"]
-[ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="3_mc6wl"]
+[ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="1_ldtcs"]
+[ext_resource type="Texture2D" uid="uid://n0hg4np3jl8j" path="res://Weapons/assets/pngwing.com.png" id="2_b7fww"]
+[ext_resource type="Script" path="res://Weapons/fireball/fireball.gd" id="2_kpbs2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h4ycf"]
 radius = 21.0
@@ -55,26 +55,22 @@ tracks/1/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_d0q1b"]
-resource_name = "test"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rx4cs"]
 _data = {
 "RESET": SubResource("Animation_3moba"),
-"fire": SubResource("Animation_ucs7p"),
-"test": SubResource("Animation_d0q1b")
+"fire": SubResource("Animation_ucs7p")
 }
 
 [node name="Fireball" type="Area2D"]
 position = Vector2(-41, 1)
 collision_layer = 0
-collision_mask = 16
-script = ExtResource("1_u3fpi")
+collision_mask = 0
+script = ExtResource("2_kpbs2")
 cooldown = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 4.71239
-texture = ExtResource("1_erhff")
+rotation = -1.5708
+texture = ExtResource("2_b7fww")
 hframes = 8
 vframes = 7
 frame = 48
@@ -84,8 +80,9 @@ position = Vector2(45, 0)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_h4ycf")
 
-[node name="Hitbox" parent="." instance=ExtResource("3_mc6wl")]
+[node name="Hitbox" parent="." instance=ExtResource("1_ldtcs")]
 collision_layer = 32
+damage = 3
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(59, 0)

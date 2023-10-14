@@ -97,7 +97,6 @@ frame = 5
 frame_progress = 0.902589
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 12)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1c87o")
@@ -107,6 +106,7 @@ position = Vector2(0, 14)
 texture = ExtResource("3_1intn")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_cngeo")]
+visible = false
 position = Vector2(0, -2)
 collision_layer = 16
 collision_mask = 32
@@ -121,6 +121,7 @@ debug_color = Color(0.913725, 0, 0.721569, 0.419608)
 max_health = 3
 
 [node name="Hitbox" parent="." instance=ExtResource("6_p6l75")]
+visible = false
 collision_layer = 64
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
@@ -129,6 +130,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gjs3k")
 
 [node name="SoftCollision" parent="." instance=ExtResource("7_u2ktj")]
+visible = false
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 position = Vector2(0, 2)

@@ -106,7 +106,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 1.0
 
 [node name="Staff" parent="." instance=ExtResource("4_6lcvg")]
-position = Vector2(-2, -19)
+position = Vector2(0, -21)
 rotation = -1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -117,7 +117,7 @@ shape = SubResource("CapsuleShape2D_ngniq")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 shadow_enabled = true
 texture = ExtResource("4_twoih")
-texture_scale = 0.5
+texture_scale = 0.75
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_a1pmt")]
 collision_mask = 64

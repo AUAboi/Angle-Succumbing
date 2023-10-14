@@ -6,9 +6,10 @@ class_name Enemy
 @export var speed: float = 60.0
 @export var friction: float = 200.0
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
+@onready var sprite: AnimatedSprite2D = $%AnimatedSprite2D 
 @onready var stats: Node = $Stats 
 @onready var soft_collision: Area2D = $SoftCollision
+@onready var hurtbox: Hurtbox = $Hurtbox
 
 var HitEffect: PackedScene = preload("res://Effects/hit_effect.tscn")
 var DeathEffect: PackedScene = preload("res://Effects/enemy_death_effect.tscn")
@@ -32,16 +33,17 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_hurtbox_area_entered(area: Area2D):
-	if not area.is_in_group("safe"):
-		var knockback_direction = -player_direction
-		stats.health -= area.damage
-		velocity = knockback_direction * 120
-		var hitEffect = HitEffect.instantiate()
-		get_tree().current_scene.add_child(hitEffect)
-		hitEffect.global_position = global_position
+	if("knockback" in area):
+		var knockback_direction = -global_position.direction_to(area.global_position)
+		velocity = knockback_direction * area.knockback
+		
+	stats.health -= area.damage
+	hurtbox.create_hit_effect()
 
 func _on_stats_no_health():
 	queue_free()
 	var death_effect: AnimatedSprite2D = DeathEffect.instantiate()
 	get_tree().current_scene.add_child(death_effect)
 	death_effect.global_position = global_position
+
+
