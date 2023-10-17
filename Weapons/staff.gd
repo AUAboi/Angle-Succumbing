@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@export var Spell: PackedScene = preload("res://Weapons/fireball/fireball.tscn")
+@export var Spell: PackedScene = preload("res://Weapons/ice_shard/ice_shard.tscn")
 
 @onready var muzzle: Marker2D = $Muzzle
 @onready var timer: Timer = $Timer

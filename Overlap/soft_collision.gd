@@ -8,4 +8,5 @@ func get_push_vector() -> Vector2:
 	if is_colliding():
 		var area: Area2D = get_overlapping_areas()[0]
 		push_vector = area.global_position.direction_to(global_position)
+		push_vector.normalized()
 	return push_vector

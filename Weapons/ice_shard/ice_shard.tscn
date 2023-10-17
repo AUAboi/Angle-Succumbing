@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://4j7ur1amlmgg"]
+
+[ext_resource type="Texture2D" uid="uid://d17hwjutegvwc" path="res://Weapons/assets/ice_shard.png" id="1_vgqs3"]
+[ext_resource type="Script" path="res://Weapons/ice_shard/ice_shard.gd" id="1_w18uo"]
+[ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="2_wyjg1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5363"]
+radius = 3.0
+height = 12.0
+
+[node name="IceShard" type="Area2D"]
+script = ExtResource("1_w18uo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_vgqs3")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_wyjg1")]
+collision_layer = 32
+collision_mask = 16
+knockback = 0
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_v5363")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Hitbox"]

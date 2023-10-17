@@ -52,7 +52,7 @@ func handle_movement(delta: float) -> void:
 
 func handle_shooting(mouse_position: Vector2) -> void:
 	weapon.muzzle.look_at(mouse_position)
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot"):
 		weapon.shoot()
 	if mouse_position.x > position.x:
 		animated_sprite.flip_h = false
