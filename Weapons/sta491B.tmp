@@ -15,7 +15,4 @@ one_shot = true
 [node name="ReloadBar" parent="." instance=ExtResource("2_iqieu")]
 metadata/_edit_use_anchors_ = true
 
-[node name="ChargeTimer" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

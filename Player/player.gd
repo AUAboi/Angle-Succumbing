@@ -25,7 +25,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
 	handle_movement(delta)
-	handle_shooting(mouse_position)
+	handle_aim(mouse_position)
 	
 	if Input.is_action_just_pressed("dash"):
 		skill.execute(self, mouse_position)
@@ -50,10 +50,9 @@ func handle_movement(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 				
 
-func handle_shooting(mouse_position: Vector2) -> void:
+func handle_aim(mouse_position: Vector2) -> void:
 	weapon.muzzle.look_at(mouse_position)
-	if Input.is_action_pressed("shoot"):
-		weapon.shoot()
+	
 	if mouse_position.x > position.x:
 		animated_sprite.flip_h = false
 	elif mouse_position.x < position.x:

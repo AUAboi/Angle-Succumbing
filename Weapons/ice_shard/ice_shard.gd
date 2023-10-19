@@ -1,19 +1,15 @@
-extends Area2D
-
-
-@export var speed: float = 200
-@export var cooldown: float = 0.2
+extends Spell
 
 @onready var timer: Timer = $Timer
 
 func _ready() -> void:
-	timer.start(5)
+	timer.start(deletion_time)
 
 func _physics_process(delta: float) -> void:
 	position += transform.x * speed * delta
 
-func _on_hitbox_area_entered() -> void:
+func _on_timer_timeout() -> void:
 	queue_free()
 
-func _on_timer_timeout() -> void:
+func _on_hitbox_area_entered(_area: Area2D) -> void:
 	queue_free()

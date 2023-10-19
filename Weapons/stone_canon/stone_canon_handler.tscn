@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm5vt5hdkj2xl"]
+
+[ext_resource type="Script" path="res://Weapons/stone_canon/stone_canon_handler.gd" id="1_ewb8y"]
+
+[node name="StoneCanonHandler" type="Node2D"]
+script = ExtResource("1_ewb8y")
