@@ -1,7 +1,7 @@
 extends Sprite2D
 
 #Change spell here
-@export var spell_scene: PackedScene = preload("res://Weapons/ice_shard/ice_shard.tscn")
+@export var spell_scene: PackedScene = preload("res://Weapons/stone_canon/stone_canon.tscn")
 
 @onready var muzzle: Marker2D = $Muzzle
 @onready var cooldown_timer: Timer = $Timer
@@ -17,11 +17,11 @@ var charge_held_time: float = 0
 
 var spell: Spell
 
-var spell_type: Spell.SPELL_TYPE
+var spell_type: Spell.SpellTypes
 
-enum STAFF_STATES { IDLE, CHARGING, SHOT }
+enum StaffStates { IDLE, CHARGING, SHOT }
 
-var state: STAFF_STATES = STAFF_STATES.IDLE
+var staff_state: StaffStates = StaffStates.IDLE
 
 func _ready() -> void:
 	spell_type = spell_scene.instantiate().type
@@ -34,68 +34,42 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if !is_on_cooldown:
 		match spell_type:
-			Spell.SPELL_TYPE.NORMAL:
+			Spell.SpellTypes.NORMAL:
 				if Input.is_action_pressed("shoot"):
-					shoot(delta)
+					spell = spell_scene.instantiate() as Spell
+					get_tree().root.add_child(spell)
+					spell.transform = muzzle.global_transform
 					
-			Spell.SPELL_TYPE.CHARGEABLE:
+					is_on_cooldown = true
+					cooldown = spell.cooldown
+					bar_speed = 100 / cooldown
+					cooldown_timer.start(cooldown)
+	
+			Spell.SpellTypes.CHARGEABLE:
 				if Input.is_action_pressed("shoot"):
 					charge_held_time += delta
-					if state == STAFF_STATES.IDLE:
+					if staff_state == StaffStates.IDLE:
 							spell = spell_scene.instantiate() as Spell
-							state = STAFF_STATES.CHARGING
+							staff_state = StaffStates.CHARGING
 							
 							get_tree().root.add_child(spell)
 							spell.transform = muzzle.global_transform
 					
-					
 				elif Input.is_action_just_released("shoot"):
 					if(spell == null):
-						state = STAFF_STATES.IDLE
+						staff_state = StaffStates.IDLE
 					else:
-						if state == STAFF_STATES.CHARGING:
+						if staff_state == StaffStates.CHARGING:
 							spell.cast(charge_held_time)
-							state = STAFF_STATES.SHOT
+							charge_held_time = 0
+							staff_state = StaffStates.SHOT
 							is_on_cooldown = true
 							cooldown = spell.cooldown
 							bar_speed = 100 / cooldown
 							cooldown_timer.start(cooldown)
 					
-					charge_held_time = 0
-					
-func shoot(delta: float) -> void: 
-	if !is_on_cooldown:
-		match spell_type:
-			Spell.SPELL_TYPE.NORMAL:
-				spell = spell_scene.instantiate() as Spell
-				
-				get_tree().root.add_child(spell)
-				spell.transform = muzzle.global_transform
-				
-				is_on_cooldown = true
-				cooldown = spell.cooldown
-				bar_speed = 100 / cooldown
-				cooldown_timer.start(cooldown)
-				
-			Spell.SPELL_TYPE.CHARGEABLE:
-				if state == STAFF_STATES.IDLE:
-					spell = spell_scene.instantiate() as Spell
-					state = STAFF_STATES.CHARGING
-					
-					get_tree().root.add_child(spell)
-					spell.transform = muzzle.global_transform
-				
-				charge_held_time += delta
-				
-				if Input.is_action_just_released("shoot"):
-					print("release")
-					spell.cast(charge_held_time)
-					is_on_cooldown = true
-					cooldown = spell.cooldown
-					bar_speed = 100 / cooldown
-					cooldown_timer.start(cooldown)
 
 func _on_timer_timeout() -> void:
 	progress = 0
 	is_on_cooldown = false
-	state = STAFF_STATES.IDLE
+	staff_state = StaffStates.IDLE
