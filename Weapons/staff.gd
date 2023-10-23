@@ -19,12 +19,16 @@ var spell: Spell
 
 var spell_type: Spell.SpellTypes
 
-enum StaffStates { IDLE, CHARGING, SHOT }
+enum StaffStates { IDLE, CHARGING }
 
 var staff_state: StaffStates = StaffStates.IDLE
 
 func _ready() -> void:
-	spell_type = spell_scene.instantiate().type
+	var spell_instance: Spell = spell_scene.instantiate() as Spell
+	spell_type = spell_instance.type
+	cooldown = spell_instance.cooldown
+	
+	spell_instance.queue_free()
 
 func _process(_delta: float) -> void:
 	bar.set_value(progress)
@@ -44,30 +48,39 @@ func _physics_process(delta: float) -> void:
 					cooldown = spell.cooldown
 					bar_speed = 100 / cooldown
 					cooldown_timer.start(cooldown)
-	
+				
 			Spell.SpellTypes.CHARGEABLE:
 				if Input.is_action_pressed("shoot"):
 					charge_held_time += delta
 					if staff_state == StaffStates.IDLE:
 							spell = spell_scene.instantiate() as Spell
 							staff_state = StaffStates.CHARGING
-							
 							get_tree().root.add_child(spell)
 							spell.transform = muzzle.global_transform
+						
+					elif staff_state == StaffStates.CHARGING:
+						if spell == null:
+							start_cooldown()
+						else:
+							if (spell.has_method("casting")):
+								spell.casting(charge_held_time)
+								
+							spell.transform = muzzle.global_transform
+						
 					
 				elif Input.is_action_just_released("shoot"):
+					start_cooldown()
 					if(spell == null):
 						staff_state = StaffStates.IDLE
 					else:
 						if staff_state == StaffStates.CHARGING:
 							spell.cast(charge_held_time)
 							charge_held_time = 0
-							staff_state = StaffStates.SHOT
-							is_on_cooldown = true
-							cooldown = spell.cooldown
-							bar_speed = 100 / cooldown
-							cooldown_timer.start(cooldown)
-					
+
+func start_cooldown():
+	is_on_cooldown = true
+	bar_speed = 100 / cooldown
+	cooldown_timer.start(cooldown)
 
 func _on_timer_timeout() -> void:
 	progress = 0

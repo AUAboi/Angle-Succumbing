@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://7jdxn1tq7whk"]
 
-[ext_resource type="Script" path="res://Enemies/base_enemy.gd" id="1_gt4aa"]
+[ext_resource type="Script" path="res://Enemies/BaseEnemy/base_enemy.gd" id="1_gt4aa"]
 [ext_resource type="Texture2D" uid="uid://d1n5y88vvnm8p" path="res://Shadows/MediumShadow.png" id="3_1intn"]
 [ext_resource type="Texture2D" uid="uid://s2r7atwdkr0b" path="res://Enemies/VenomousChimeraIdle.png" id="3_4afdq"]
 [ext_resource type="PackedScene" uid="uid://cjk2j1x8svijx" path="res://Overlap/hurtbox.tscn" id="4_cngeo"]

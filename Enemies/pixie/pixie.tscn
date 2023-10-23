@@ -1,12 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhpmwjdewovv4"]
+[gd_scene load_steps=19 format=3 uid="uid://dbbakcoerlvl0"]
 
-[ext_resource type="Script" path="res://Enemies/base_enemy.gd" id="1_7egaj"]
-[ext_resource type="Texture2D" uid="uid://d2jably0jhn4a" path="res://Enemies/FlutteringPixieIdle.png" id="1_n785a"]
+[ext_resource type="Script" path="res://Enemies/BaseEnemy/base_enemy.gd" id="1_4vuj1"]
+[ext_resource type="Texture2D" uid="uid://d2jably0jhn4a" path="res://Enemies/pixie/FlutteringPixieIdle.png" id="2_k1q0w"]
 [ext_resource type="Texture2D" uid="uid://dt1amv2jt0yu1" path="res://Shadows/SmallShadow.png" id="3_sskeg"]
 [ext_resource type="PackedScene" uid="uid://cjk2j1x8svijx" path="res://Overlap/hurtbox.tscn" id="3_t318n"]
 [ext_resource type="PackedScene" uid="uid://onkp6yacs7v4" path="res://stats.tscn" id="4_oxyjr"]
 [ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="5_rbx7e"]
 [ext_resource type="PackedScene" uid="uid://dcqc76qh7nxhk" path="res://Overlap/soft_collision.tscn" id="7_p1eq3"]
+[ext_resource type="Script" path="res://Overlap/state_machine.gd" id="8_xi17d"]
+[ext_resource type="Script" path="res://Enemies/BaseEnemy/chase.gd" id="9_h3a0a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tvut2"]
 radius = 4.0
@@ -173,13 +175,16 @@ _data = {
 "default": SubResource("Animation_2b346")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ldi1"]
+radius = 9.05539
+
 [node name="Pixie" type="CharacterBody2D"]
 collision_layer = 4
-script = ExtResource("1_7egaj")
+script = ExtResource("1_4vuj1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -14)
-texture = ExtResource("1_n785a")
+texture = ExtResource("2_k1q0w")
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -203,7 +208,6 @@ debug_color = Color(0.913725, 0, 0.721569, 0.419608)
 max_health = 6
 
 [node name="Hitbox" parent="." instance=ExtResource("5_rbx7e")]
-visible = false
 position = Vector2(0, -14)
 collision_layer = 64
 
@@ -222,8 +226,26 @@ libraries = {
 "": SubResource("AnimationLibrary_qpp2h")
 }
 
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("8_xi17d")
+initial_state = NodePath("Chase")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("9_h3a0a")
+
+[node name="FlockView" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 256
+collision_mask = 256
+
+[node name="ViewRadius" type="CollisionShape2D" parent="FlockView"]
+position = Vector2(0, -14)
+shape = SubResource("CircleShape2D_4ldi1")
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="area_entered" from="FlockView" to="StateMachine/Chase" method="_on_flock_view_area_entered"]
+[connection signal="area_exited" from="FlockView" to="StateMachine/Chase" method="_on_flock_view_area_exited"]
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

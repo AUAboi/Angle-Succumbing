@@ -2,8 +2,17 @@ extends Area2D
 
 class_name Spell
 
-enum SpellTypes {NORMAL, CHARGEABLE}
-enum SpellStates { IDLE, CHARGING, CHARGED, SHOT }
+enum SpellTypes { 
+	NORMAL, 
+	CHARGEABLE, 
+	}
+
+enum SpellStates { 
+	IDLE, 
+	CHARGING, 
+	CHARGED, 
+	SHOT, 
+	}
 
 @export var speed: float
 @export var cooldown: float

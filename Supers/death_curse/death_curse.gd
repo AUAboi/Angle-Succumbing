@@ -40,11 +40,10 @@ func _on_curse_timer_timeout() -> void:
 			if(enemy != null):
 				enemy.sprite.material = ShaderMaterial.new()
 				enemy.sprite.material.shader = shader_effect
-				enemy.state = enemy.States.DEAD
+				enemy.is_dead = true
 				enemy.process_mode = Node.PROCESS_MODE_DISABLED
 		
 		death_timer.start(DEATH_EFFECT_DELAY)
-
 
 func _on_death_timer_timeout() -> void:
 	if(target_enemies.size() > 0):
