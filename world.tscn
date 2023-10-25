@@ -651,4 +651,3 @@ speed = 30.0
 position = Vector2(-408, -135)
 
 [node name="HUD" parent="." instance=ExtResource("5_qjvba")]
-visible = false

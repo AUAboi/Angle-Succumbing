@@ -2,7 +2,6 @@ extends State
 
 @onready var view_radius: CollisionShape2D = $%FlockView/ViewRadius
 
-var max_speed: float
 @export var mouse_follow_force: = 0.05
 @export var cohesion_force: = 0.05
 @export var algin_force: = 0.05
@@ -12,17 +11,19 @@ var max_speed: float
 
 
 var _flock: Array = []
-var player_direction: Vector2 = Vector2.ZERO
+
 var _velocity: Vector2
 
+var player_direction: Vector2 = Vector2.ZERO
 
-func _ready():
+var max_speed: float
+
+func enter(_msg:= {}):
 	randomize()
 	max_speed = owner.speed
 	_velocity = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized() * max_speed
 
-
-func physics_update(_delta):
+func physics_update(_delta: float) -> void:
 	var mouse_vector = Vector2.ZERO
 	if(Global.Player != null):
 		mouse_vector = owner.global_position.direction_to(Global.Player.global_position) * max_speed * mouse_follow_force
@@ -46,7 +47,7 @@ func physics_update(_delta):
 	owner.sprite.flip_h = _velocity.x < 0
 
 
-func get_flock_status(flock: Array):
+func get_flock_status(flock: Array) -> Array[Vector2]:
 	var center_vector: = Vector2()
 	var flock_center: = Vector2()
 	var align_vector: = Vector2()

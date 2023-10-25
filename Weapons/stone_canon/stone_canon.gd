@@ -3,33 +3,36 @@ extends Spell
 @onready var timer: Timer = $Timer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
-@export var enemy_pass_count: int = 1
+@export var enemy_pass_count := 1
 
-var charge_level: int = 0
+var _charge_level := 0
+var _held_time := 0.0
 
 func _ready() -> void:
 	animated_sprite_2d.play("default")
 
-func cast(charge_time: float) -> void:
-	if charge_time > 3:
-		enemy_pass_count = 2
-		scale = Vector2(1.5, 1.5)
-		
-	spell_state = SpellStates.SHOT
-	timer.start(deletion_time)
-
-func casting(charge_time: float) -> void:
-	if charge_time > 1.0 && charge_level == 0: 
-		charge_level = 1
-		var tween: Tween = get_tree().create_tween()
-		tween.tween_property(animated_sprite_2d, "speed_scale", 10, 3.0)
-
 func _physics_process(delta: float) -> void:
 	match spell_state:
 		SpellStates.CHARGING:
-			pass
+			_held_time += delta
+			if _held_time > 1.0 && _charge_level == 0: 
+				_charge_level = 1
+				var tween := get_tree().create_tween()
+				tween.tween_property(animated_sprite_2d, "speed_scale", 10, 3.0)
+				tween.tween_property(self, "scale", Vector2(2.5, 2.5), 1.0)
+				
 		SpellStates.SHOT:
-			position += transform.x * speed * delta
+			position += transform.x * spell_stats.speed * delta
+
+func cast() -> void:
+	if _held_time > 3.0:
+		enemy_pass_count = 2
+	
+	_held_time = 0.0
+	spell_state = SpellStates.SHOT
+	timer.start(spell_stats.deletion_time)
+
+
 
 func _on_timer_timeout() -> void:
 	queue_free()

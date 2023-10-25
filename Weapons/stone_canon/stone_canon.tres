@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SpellStats" load_steps=2 format=3 uid="uid://6bctu8inn7m8"]
+
+[ext_resource type="Script" path="res://Weapons/spell_stats.gd" id="1_0ewi7"]
+
+[resource]
+script = ExtResource("1_0ewi7")
+name = "Stone Canon"
+damage = 10
+cooldown = 4
+speed = 100.0
+deletion_time = 4.0
+description = "Chargeable stone canon"
+type = 1

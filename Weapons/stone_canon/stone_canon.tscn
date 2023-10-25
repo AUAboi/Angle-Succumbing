@@ -1,12 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://kk66xp3bdkro"]
+[gd_scene load_steps=25 format=3 uid="uid://kk66xp3bdkro"]
 
 [ext_resource type="PackedScene" uid="uid://dfo0rkub6k451" path="res://Overlap/hitbox.tscn" id="1_0e05q"]
 [ext_resource type="Script" path="res://Weapons/stone_canon/stone_canon.gd" id="1_4fn38"]
 [ext_resource type="Texture2D" uid="uid://di7xk3i8jhstg" path="res://Weapons/assets/stone_canon.png" id="2_8y173"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rng8n"]
-radius = 2.0
-height = 20.0
+[ext_resource type="Resource" uid="uid://6bctu8inn7m8" path="res://Weapons/stone_canon/stone_canon.tres" id="2_ot8xm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23gf3"]
 atlas = ExtResource("2_8y173")
@@ -135,34 +132,39 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rng8n"]
+radius = 4.0
+height = 20.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4siqf"]
-radius = 3.0
-height = 18.0
+radius = 4.0
+height = 20.0
 
 [node name="StoneCanon" type="Area2D"]
 script = ExtResource("1_4fn38")
-speed = 100.0
-cooldown = 2.0
-deletion_time = 5.0
-type = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_rng8n")
+spell_stats = ExtResource("2_ot8xm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_t51na")
 frame_progress = 0.988119
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rng8n")
+
 [node name="Hitbox" parent="." instance=ExtResource("1_0e05q")]
+position = Vector2(-1, -1)
 collision_layer = 32
 collision_mask = 16
+damage = 10
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(0, -1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4siqf")
+debug_color = Color(0.992157, 0, 0.262745, 0.419608)
 
 [node name="Timer" type="Timer" parent="."]
 

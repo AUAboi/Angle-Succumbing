@@ -21,7 +21,7 @@ func execute() -> void:
 	
 	var enemy_hitboxes: Array[Area2D] = get_overlapping_areas()
 	
-	if(enemy_hitboxes.size() > target_limit):
+	if enemy_hitboxes.size() > target_limit:
 		enemy_hitboxes.shuffle()
 		enemy_hitboxes = enemy_hitboxes.slice(0, target_limit)
 		
@@ -35,7 +35,7 @@ func execute() -> void:
 		curse_timer.start(curse_time)
 
 func _on_curse_timer_timeout() -> void:
-	if(target_enemies.size() > 0):
+	if target_enemies.size() > 0:
 		for enemy in target_enemies:
 			if(enemy != null):
 				enemy.sprite.material = ShaderMaterial.new()
@@ -46,7 +46,7 @@ func _on_curse_timer_timeout() -> void:
 		death_timer.start(DEATH_EFFECT_DELAY)
 
 func _on_death_timer_timeout() -> void:
-	if(target_enemies.size() > 0):
+	if target_enemies.size() > 0:
 		for enemy in target_enemies:
 			if(enemy != null):
 				enemy.stats.health -= damage

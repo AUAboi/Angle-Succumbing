@@ -10,7 +10,6 @@ class_name Enemy
 @onready var sprite: Sprite2D = $Sprite2D 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var stats: Node = $Stats 
-@onready var soft_collision: Area2D = $SoftCollision
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var state_machine: StateMachine = $StateMachine
 
@@ -18,9 +17,6 @@ var HitEffect: PackedScene = preload("res://Effects/hit_effect.tscn")
 var DeathEffect: PackedScene = preload("res://Effects/enemy_death_effect.tscn")
 
 var player_direction: Vector2 = Vector2.ZERO
-
-#Improve this and every procedure where its used
-var is_dead: bool = false
 
 func _ready() -> void:
 	animation_player.play("default")
@@ -41,8 +37,4 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	hurtbox.create_hit_effect()
 
 func _on_stats_no_health() -> void:
-	if !is_dead:
-		is_dead = true
-		animation_player.play("death_anim_default")
-	else:
-		play_death_effect()
+	state_machine.transition_to("Dead", { death_animation = "death_anim_default" })
