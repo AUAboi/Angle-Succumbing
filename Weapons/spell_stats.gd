@@ -12,6 +12,7 @@ enum SpellTypes {
 
 @export var icon:Texture2D
 @export var damage := 0
+@export var knockback := 0
 @export var cooldown := 0
 @export var speed: float
 @export var deletion_time: float 

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpellStats" load_steps=2 format=3 uid="uid://didl53lskjl1c"]
+
+[ext_resource type="Script" path="res://Weapons/spell_stats.gd" id="1_jp33x"]
+
+[resource]
+script = ExtResource("1_jp33x")
+name = "Fireball"
+description = "Enormous size and damage. Cool~"
+damage = 4
+knockback = 200
+cooldown = 5
+speed = 50.0
+deletion_time = 6.0
+type = 0
+custom_var = {}

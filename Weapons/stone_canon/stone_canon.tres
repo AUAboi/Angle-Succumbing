@@ -5,9 +5,11 @@
 [resource]
 script = ExtResource("1_0ewi7")
 name = "Stone Canon"
+description = "Chargeable stone canon"
 damage = 10
+knockback = 0
 cooldown = 4
 speed = 100.0
 deletion_time = 4.0
-description = "Chargeable stone canon"
 type = 1
+custom_var = {}

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpellStats" load_steps=2 format=3 uid="uid://vh2j5bcy2604"]
+
+[ext_resource type="Script" path="res://Weapons/spell_stats.gd" id="1_uo0pb"]
+
+[resource]
+script = ExtResource("1_uo0pb")
+name = "Ice Shard"
+description = "Icey Shard goes woosh"
+damage = 10
+knockback = 0
+cooldown = 1
+speed = 80.0
+deletion_time = 2.5
+type = 0
+custom_var = {}

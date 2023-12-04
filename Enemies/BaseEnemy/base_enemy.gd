@@ -29,12 +29,14 @@ func play_death_effect() -> void:
 	
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if("knockback" in area):
+	if "knockback" in area:
 		var knockback_direction = -global_position.direction_to(area.global_position)
 		velocity = knockback_direction * area.knockback
 	
 	stats.health -= area.damage
 	hurtbox.create_hit_effect()
+	
+	print(stats.health)
 
 func _on_stats_no_health() -> void:
 	state_machine.transition_to("Dead", { death_animation = "death_anim_default" })

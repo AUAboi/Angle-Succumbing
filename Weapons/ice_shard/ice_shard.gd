@@ -2,11 +2,11 @@ extends Spell
 
 @onready var timer: Timer = $Timer
 
-func _ready() -> void:
-	timer.start(deletion_time)
+func is_ready() -> void:
+	timer.start(spell_stats.deletion_time)
 
 func _physics_process(delta: float) -> void:
-	position += transform.x * speed * delta
+	position += transform.x * spell_stats.speed * delta
 
 func _on_timer_timeout() -> void:
 	queue_free()

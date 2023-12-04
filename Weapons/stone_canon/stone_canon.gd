@@ -8,7 +8,7 @@ extends Spell
 var _charge_level := 0
 var _held_time := 0.0
 
-func _ready() -> void:
+func is_ready() -> void:
 	animated_sprite_2d.play("default")
 
 func _physics_process(delta: float) -> void:
@@ -31,8 +31,6 @@ func cast() -> void:
 	_held_time = 0.0
 	spell_state = SpellStates.SHOT
 	timer.start(spell_stats.deletion_time)
-
-
 
 func _on_timer_timeout() -> void:
 	queue_free()

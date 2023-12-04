@@ -8,7 +8,7 @@ extends Area2D
 @onready var death_timer: Timer = $DeathTimer
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D  
 
-var DEATH_EFFECT_DELAY := 2
+const DEATH_EFFECT_DELAY := 2
 
 var DeathCurseCircle: PackedScene = preload("res://Supers/death_curse/death_curse_circle.tscn")
 var target_enemies: Array[Enemy]
@@ -16,7 +16,7 @@ var target_enemies: Array[Enemy]
 var shader_effect: Shader = preload("res://Effects/curse_effect.gdshader")
 
 func execute() -> void:
-	if(not curse_timer.is_stopped() || not death_timer.is_stopped()):
+	if not curse_timer.is_stopped() || not death_timer.is_stopped():
 		return
 	
 	var enemy_hitboxes: Array[Area2D] = get_overlapping_areas()
@@ -37,18 +37,17 @@ func execute() -> void:
 func _on_curse_timer_timeout() -> void:
 	if target_enemies.size() > 0:
 		for enemy in target_enemies:
-			if(enemy != null):
+			if enemy != null:
 				enemy.sprite.material = ShaderMaterial.new()
 				enemy.sprite.material.shader = shader_effect
-				enemy.is_dead = true
-				enemy.process_mode = Node.PROCESS_MODE_DISABLED
+				enemy.state_machine.transition_to("Dead")
 		
 		death_timer.start(DEATH_EFFECT_DELAY)
 
 func _on_death_timer_timeout() -> void:
 	if target_enemies.size() > 0:
 		for enemy in target_enemies:
-			if(enemy != null):
+			if enemy != null:
 				enemy.stats.health -= damage
 	
 	target_enemies = []
